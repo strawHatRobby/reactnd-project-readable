@@ -4,16 +4,24 @@ import { getAllCategories, getPostsForAGivenCategory } from '../utils/readApi'
 
 
 class Categories extends Component{
+	state = {
+		categories: []
+	}
+
+	componentDidMount() {
+	  getAllCategories().then((categories) => {
+	  this.setState({categories})
+	})
+	}
 
 	render(){
-		const { categories } = this.props
+		const { categories } = this.state
 		return (
 				 <div className="categories">
-            {this.props.categories.map((category) => (
+            {categories.map((category) => (
               <Link
                 to={`/${category.path}/posts`}
                 className="category"
-                key={category.name}
                 >
                   <h1>{category.name}</h1>
               </Link>                

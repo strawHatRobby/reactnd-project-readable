@@ -11,9 +11,9 @@ export const getAllCategories = () => {
 }
 {/*for debug purposes only */}
 export const allCategories = () => {
-	fetch(`${api}/categories`, { headers })
+	fetch(`${api}/posts`, { headers })
 		.then(response => response.json())
-		.then(data => console.log(data.categories))
+		.then(data => console.log(data))
 }
 
 export const getPostsForAGivenCategory = (category ) => {

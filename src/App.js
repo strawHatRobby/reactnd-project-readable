@@ -4,19 +4,17 @@ import logo from './logo.svg';
 import './App.css';
 import * as ReadAPI from './utils/readApi'
 import Categories from './components/Categories'
+import Posts from './components/Posts'
+import Comments from './components/Comments'
 
 class App extends Component {
   state = {
-    categories: [],
     posts: []
 
   }
 
 
 componentDidMount() {
-ReadAPI.getAllCategories().then((categories) => {
-  this.setState({categories})
-})
 ReadAPI.getAllPosts().then((posts) => {
   this.setState({posts})
 })
@@ -37,14 +35,21 @@ ReadAPI.getComments()
            <h1>Categories</h1>
           
           </Link>
+          <Link to="/posts/"
+           > 
+           <h1>Posts</h1>
+          
+          </Link>
           </div>
           )}
           />
       <Route exact path="/categories/"
-            render={() => (
-                      <Categories categories={this.state.categories} />
-              )}
+            component={Categories}
       />
+       <Route exact path="/posts/"
+            component={Posts}
+      />
+      
        
       </div>
     )
