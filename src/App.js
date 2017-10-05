@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import { Link, Route } from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import * as ReadAPI from './utils/readApi'
-
+import Categories from './components/Categories'
 
 class App extends Component {
   state = {
-    screen: 'posts',
     categories: [],
     posts: []
 
@@ -20,6 +20,7 @@ ReadAPI.getAllCategories().then((categories) => {
 ReadAPI.getAllPosts().then((posts) => {
   this.setState({posts})
 })
+
 ReadAPI.getPostsForAGivenCategory('react')
 ReadAPI.getComments()
 }
@@ -27,21 +28,24 @@ ReadAPI.getComments()
   render() {
     return(
       <div className="App">
-       {this.state.screen === 'main' && (
-          <div className="categories">
-            {this.state.categories.map((category) => (
-                  <h1>{category.name}</h1>
-              ))}
+      <Route exact path="/"
+        render={() => (
+          <div className='main-view'>
+          <h1>Select by</h1>
+          <Link to="/categories/"
+           > 
+           <h1>Categories</h1>
+          
+          </Link>
           </div>
-      
-        )} 
-        {this.state.screen === 'posts' && (
-              <div className="posts">
-              {this.state.posts.map((post) => (
-                    <h1 key={post.id}>{post.title}</h1>
-                ))}
-              </div>
           )}
+          />
+      <Route exact path="/categories/"
+            render={() => (
+                      <Categories categories={this.state.categories} />
+              )}
+      />
+       
       </div>
     )
   }

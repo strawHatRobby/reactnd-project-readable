@@ -9,6 +9,12 @@ export const getAllCategories = () => {
 		.then(response => response.json())
 		.then(data => data.categories)
 }
+{/*for debug purposes only */}
+export const allCategories = () => {
+	fetch(`${api}/categories`, { headers })
+		.then(response => response.json())
+		.then(data => console.log(data.categories))
+}
 
 export const getPostsForAGivenCategory = (category ) => {
 	fetch(`${api}/${category}/posts`, { headers })
