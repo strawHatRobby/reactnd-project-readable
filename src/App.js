@@ -5,20 +5,15 @@ import './App.css';
 import * as ReadAPI from './utils/readApi'
 import Categories from './components/Categories'
 import Posts from './components/Posts'
+import PostDetail from './components/PostDetail'
 import Comments from './components/Comments'
 
-class App extends Component {
-  state = {
-    posts: []
 
-  }
+class App extends Component {
+
 
 
 componentDidMount() {
-ReadAPI.getAllPosts().then((posts) => {
-  this.setState({posts})
-})
-
 ReadAPI.getPostsForAGivenCategory('react')
 ReadAPI.getComments()
 }
@@ -49,7 +44,7 @@ ReadAPI.getComments()
        <Route exact path="/posts/"
             component={Posts}
       />
-      
+     
        
       </div>
     )

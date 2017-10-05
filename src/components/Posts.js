@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import { getAllPosts, getPostsForAGivenCategory } from '../utils/readApi'
-
+import PostDetail from './PostDetail'
 
 class Posts extends Component{
   state = {
@@ -25,7 +25,11 @@ class Posts extends Component{
                 className="post"
                 >
                 
-                 <li key={post.id}>{post.title}</li>
+                 <li key={post.id}>{post.title}
+                  <Route exact path={`/posts/${post.id}`}
+                    render={(props) => <PostDetail {...props} postid={post.id}/>}
+                    />
+                 </li>
               </Link>                
               ))}
           </ol>
