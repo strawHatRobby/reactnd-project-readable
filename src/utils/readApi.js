@@ -59,14 +59,14 @@ export const getAllPosts = () => {
 }
 
 
-export const getPostDetails = (postID ) => {
+export const getPostDetails = (postID) => {
 	fetch(`${api}/posts/${postID}`, { headers })
 		.then(response => {
 			if(!response.ok){
 				throw response
 			} else 
 			return response.json()})
-		.then(data => console.log(data))
+		.then(data => data)
 		.catch((error) => {
 			console.log(`failed to fetch the data because 'post details' were ${error.statusText}`)
 		})

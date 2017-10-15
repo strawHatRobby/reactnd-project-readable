@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { getPostDetails, getPostsForAGivenCategory } from '../utils/readApi'
+import { getPost } from '../actions/postsAction'
+import { connect } from 'react-redux'
 
 
 class PostDetail extends Component{

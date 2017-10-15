@@ -44,8 +44,6 @@ ReadAPI.getComments()
        <Route exact path="/posts/"
             component={Posts}
       />
-     
-       
       </div>
     )
   }
