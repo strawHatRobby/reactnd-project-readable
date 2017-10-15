@@ -1,9 +1,9 @@
-const posts = (state = { post: [] }, action) => {
+const posts = (state = { posts: [] }, action) => {
 	switch(action.type){
 		case 'POST_GET':
 			return  {
 				...state,
-				post: action.posts
+				posts: action.posts
 			}
 		default: 
 			return state
