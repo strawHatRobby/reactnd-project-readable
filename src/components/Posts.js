@@ -17,10 +17,11 @@ class Posts extends Component{
     return (
          <div className="posts">
          <ol>
-            {posts.map((post) => (
+            {posts.map((post,index) => (
               <Link
                 to={`/posts/${post.id}`}
                 className="post"
+                key={index}
                 >
                 
                  <li key={post.id}>{post.title}
@@ -36,7 +37,7 @@ class Posts extends Component{
 
 const mapStateToProps = ({ posts }) => {
   return {
-  posts
+  posts: posts.posts
   }
 }
 

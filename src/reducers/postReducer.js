@@ -1,6 +1,6 @@
 const posts = (state = { posts: [] }, action) => {
 	switch(action.type){
-		case 'POST_GET':
+		case 'FETCH_POSTS':
 			return  {
 				...state,
 				posts: action.posts

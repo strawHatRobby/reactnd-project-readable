@@ -48,8 +48,14 @@ export const getPostsForAGivenCategory = (category ) => {
 export const getAllPosts = () => {
 	return fetch(`${api}/posts`, { headers })
 		.then(response => {
+			if(!response.ok){
+				throw response
+			} else 
 			return response.json()})
 		.then(data => data)
+		.catch((error) => {
+			console.log(`failed to fetch the data because 'posts' were ${error.statusText}`)
+		})
 }
 
 
