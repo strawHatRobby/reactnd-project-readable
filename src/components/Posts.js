@@ -2,20 +2,18 @@ import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom'
 import { getAllPosts, getPostsForAGivenCategory } from '../utils/readApi'
 import PostDetail from './PostDetail'
+import { connect } from 'react-redux'
+import { getPosts } from '../actions'
 
 class Posts extends Component{
-  state = {
-    posts: []
-  }
+ 
 
   componentDidMount() {
-    getAllPosts().then((posts) => {
-    this.setState({posts})
-  })
+    this.props.getPosts()
   }
 
   render(){
-    const { posts } = this.state
+    const { posts } = this.props
     return (
          <div className="posts">
          <ol>
@@ -26,9 +24,7 @@ class Posts extends Component{
                 >
                 
                  <li key={post.id}>{post.title}
-                  <Route exact path={`/posts/${post.id}`}
-                    render={(props) => <PostDetail {...props} postid={post.id}/>}
-                    />
+                  
                  </li>
               </Link>                
               ))}
@@ -38,4 +34,15 @@ class Posts extends Component{
   }
 }
 
-export default Posts
+const mapStateToProps = ({ posts }) => {
+  return {
+  posts
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPosts: (data) => dispatch(getPosts(data))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)
