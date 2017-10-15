@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { getAllCategories, getPostsForAGivenCategory } from '../utils/readApi'
-
+import { connect } from 'react-redux'
+import { getCategories } from '../actions'
 
 class Categories extends Component{
-	state = {
-		categories: []
-	}
 
 	componentDidMount() {
-	  getAllCategories().then((categories) => {
-	  this.setState({categories})
-	})
+		this.props.getCategories()
+	
 	}
 
 	render(){
-		const { categories } = this.state
+		const { categories } = this.props
 		return (
 				 <div className="categories">
             {categories.map((category) => (
@@ -31,4 +28,15 @@ class Categories extends Component{
 	}
 }
 
-export default Categories
+const mapStateToProps = ({ categories }) => {
+	return{
+		categories: categories.categories
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCategories: (data) => dispatch(getCategories(data))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Categories)
